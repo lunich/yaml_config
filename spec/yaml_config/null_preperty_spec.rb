@@ -7,17 +7,30 @@ describe NullProperty do
   end
   [{}, [], "", 0, 0.0, nil].each do |obj|
     describe "as #{obj.class} object" do
-      it "should be equal to #{obj.inspect}" do
-        property.should be_equal(obj)
-      end
-      it "should == #{obj.inspect}" do
-        property.should == obj
-      end
+      it { property.should == obj }
+      it { property.should be_instance_of(obj.class) }
       obj.methods.each do |method|
-        it "should respond to :#{method}" do
-          property.should respond_to(method)
-        end
+        it { property.should respond_to(method) }
       end
     end
   end
+  describe "[] method" do
+    describe "should return NullProperty object" do
+      it "with string key" do
+        property["property"].should be_instance_of(NullProperty)
+      end
+      it "with symbol key" do
+        property[:property].should be_instance_of(NullProperty)
+      end
+      it "with integer key" do
+        property[0].should be_instance_of(NullProperty)
+      end
+    end
+  end
+  it { property.to_s.should == "" }
+  it { property.to_f.should == 0.0 }
+  it { property.to_i.should == 0 }
+  it { property.to_a.should == [] }
+  it { property.should be_nil }
+  it { property.should be_empty }
 end
