@@ -1,0 +1,19 @@
+== Description
+
+Simple wrapper for YAML config files.
+
+== Simple example
+
+  # File config/app_config.yml
+  # development:
+  #   app_host:
+  #     name: google.com
+  #     port: 80
+  # End of config/app_config.yml
+
+  config = YamlConfig.init!(File.join(Rails.root, "config/app_config.yml")
+  config[RAILS_ENV][:app_host][:name] # -> "google.com"
+  config[RAILS_ENV][:app_host][:port] # -> 80
+  config[RAILS_ENV][:app_host][:some] # -> NullProperty
+
+== Known issues
