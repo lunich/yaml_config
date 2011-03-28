@@ -29,5 +29,19 @@ Simple wrapper for YAML config files.
   # using data string
   config = YamlConfig.new(File.read(filename), :root => RAILS_ENV)
 
+== Singleton version
+
+In many cases (rails application is the best example) developer needs only one file for whole project.
+To accomplish this it possible to use singleton version of YamlConfig.
+
+  # environment.rb example:
+  require "yaml_config"
+  ...
+  filename = File.join(Rails.root, "config/app_config.yml")
+  config = AppYamlConfig.instance.init!(filename, :root => RAILS_ENV)
+  ...
+  # Usage
+  config.get(:username)
+
 == Known issues
 
