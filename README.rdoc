@@ -11,9 +11,22 @@ Simple wrapper for YAML config files.
   #     port: 80
   # End of config/app_config.yml
 
-  config = YamlConfig.init!(File.join(Rails.root, "config/app_config.yml")
-  config[RAILS_ENV][:app_host][:name] # -> "google.com"
-  config[RAILS_ENV][:app_host][:port] # -> 80
-  config[RAILS_ENV][:app_host][:some] # -> NullProperty
+  config = YamlConfig.new(File.join(Rails.root, "config/app_config.yml"), :root => RAILS_ENV)
+  config.get(:app_host)[:name] # -> "google.com"
+  config.get(:app_host)[:port] # -> 80
+  config.get(:app_host)[:some] # -> NullProperty
+
+== Different initializations
+
+  # using filename
+  filename = File.join(Rails.root, "config/app_config.yml")
+  config = YamlConfig.new(filename, :root => RAILS_ENV)
+  # using open stream
+  File.open(filename, "r") do |file|
+    config = YamlConfig.new(file, :root => RAILS_ENV)
+  end
+  # using data string
+  config = YamlConfig.new(File.read(filename), :root => RAILS_ENV)
 
 == Known issues
+
