@@ -1,0 +1,21 @@
+development:
+  url:
+    protocol: "http"
+    host: "localhost"
+    port: 8080
+  username: "Dev"
+  duration: 0.0
+test:
+  url:
+    protocol: "https"
+    host: "test.host"
+    port: 3000
+  username: "Test"
+  duration: 0.1
+production:
+  url:
+    protocol: "http"
+    host: "lunich.com.ua"
+    port: 80
+  username: "Prod"
+  duration: 8.0
