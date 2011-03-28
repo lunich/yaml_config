@@ -10,6 +10,7 @@ Simple wrapper for YAML config files.
   #     name: google.com
   #     port: 80
   # End of config/app_config.yml
+  require 'yaml_config'
 
   config = YamlConfig.new(File.join(Rails.root, "config/app_config.yml"), :root => RAILS_ENV)
   config.get(:app_host)[:name] # -> "google.com"
