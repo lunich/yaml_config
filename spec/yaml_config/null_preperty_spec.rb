@@ -1,4 +1,4 @@
-require File.expand_path("../../spec_helper", __FILE__)
+require File.dirname(__FILE__) + '/../spec_helper'
 require "yaml_config/null_property"
 
 describe NullProperty do
